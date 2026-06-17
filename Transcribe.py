@@ -4,9 +4,9 @@ import soundfile as sf
 import os ,queue , threading 
 
 
-device = 12
+device = input("Enter Your Device Number : ")
 rate = 48000
-duration = 4
+duration = 3
 
 model = faster_whisper.WhisperModel(
     "small",
@@ -17,9 +17,10 @@ model = faster_whisper.WhisperModel(
 
 audio_qu = queue.Queue()
 
+print("Script Started :- ")
 def record():
     while True : 
-        audio = sd.rec(int(rate*duration) ,channels=2, samplerate= rate , device= 4 , dtype="float32")
+        audio = sd.rec(int(rate*duration) ,channels=2, samplerate= rate , device= device , dtype="float32")
         sd.wait()
         audio_qu.put(audio)
 
